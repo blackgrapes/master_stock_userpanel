@@ -16,7 +16,7 @@ export default function Home() {
             <MarketTicker />
 
             {/* Hero Section - Fintech Style */}
-            <section className="relative pt-32 pb-20 md:pb-32 overflow-hidden">
+            <section className="relative pt-20 pb-20 md:pb-32 overflow-hidden">
 
                 {/* Background Grid & Spotlights */}
                 <div className="absolute inset-0 z-0 w-full h-full bg-background">
@@ -87,67 +87,72 @@ export default function Home() {
                         </div>
                     </div>
 
-                    {/* Right Column: Visual Feed (Avatars & Signals) */}
-                    <div className="relative hidden lg:block h-[500px]">
-                        {/* Abstract Background Blob */}
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-primary/20 blur-[100px] rounded-full opacity-50"></div>
+                    {/* Right Column: Golden Fintech Ecosystem (Theme Aligned) */}
+                    <div className="relative hidden lg:flex h-[600px] w-full items-center justify-end perspective-1000">
+                        {/* Golden Glow Background */}
+                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-primary/20 blur-[130px] rounded-full opacity-60 animate-pulse-slow"></div>
+                        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:60px_60px] opacity-30"></div>
 
-                        {/* Floating Signal Card (Main) */}
-                        <div className="absolute top-10 right-10 z-20 animate-in fade-in slide-in-from-right-8 duration-1000">
-                            <div className="glass-card p-4 rounded-2xl border border-green-500/30 bg-card/60 backdrop-blur-xl shadow-2xl w-64">
-                                <div className="flex items-center gap-3 mb-3">
-                                    <div className="w-10 h-10 rounded-full bg-green-500/20 flex items-center justify-center text-green-500"><TrendingUp className="w-5 h-5" /></div>
+                        {/* Central "Master Strategy" Card */}
+                        <div className="relative z-20 w-[380px] bg-card/40 backdrop-blur-xl border border-primary/20 rounded-[32px] shadow-2xl shadow-primary/5 p-6 transform hover:scale-[1.02] transition-transform duration-500 ease-out group">
+                            {/* Premium header */}
+                            <div className="flex justify-between items-center mb-6">
+                                <div className="flex items-center gap-3">
+                                    <div className="w-10 h-10 rounded-2xl bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-white shadow-lg shadow-primary/20">
+                                        <Zap className="w-5 h-5 fill-current" />
+                                    </div>
                                     <div>
-                                        <div className="text-xs font-bold text-green-500 uppercase">New Signal</div>
-                                        <div className="font-bold text-foreground">BANKNIFTY CE</div>
+                                        <div className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Active Strategy</div>
+                                        <div className="font-bold text-foreground text-lg">Golden Eagle</div>
                                     </div>
                                 </div>
-                                <div className="space-y-1">
-                                    <div className="flex justify-between text-xs text-muted-foreground"><span>Entry</span> <span className="text-foreground font-mono">48,100</span></div>
-                                    <div className="flex justify-between text-xs text-muted-foreground"><span>Target</span> <span className="text-green-500 font-mono font-bold">48,300</span></div>
+                                <div className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-xs font-bold text-primary flex items-center gap-1.5">
+                                    <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                    Live
+                                </div>
+                            </div>
+
+                            {/* Main Chart Area */}
+                            <div className="relative h-48 bg-gradient-to-b from-primary/5 to-transparent rounded-2xl border border-primary/10 overflow-hidden mb-6 group-hover:border-primary/30 transition-colors">
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <svg className="w-full h-full p-4 overflow-visible" preserveAspectRatio="none">
+                                        <path d="M0,100 C40,80 80,110 120,40 S200,60 240,10 V140 H0 Z" fill="url(#goldGradient)" className="opacity-30" />
+                                        <path d="M0,100 C40,80 80,110 120,40 S200,60 240,10" fill="none" stroke="currentColor" strokeWidth="4" className="text-primary drop-shadow-md" />
+                                        <defs>
+                                            <linearGradient id="goldGradient" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%" stopColor="hsl(var(--primary))" stopOpacity="0.4" />
+                                                <stop offset="100%" stopColor="hsl(var(--primary))" stopOpacity="0" />
+                                            </linearGradient>
+                                        </defs>
+                                        {/* Highlight Marker */}
+                                        <circle cx="240" cy="10" r="6" className="fill-primary animate-ping opacity-75" />
+                                        <circle cx="240" cy="10" r="4" className="fill-background stroke-primary stroke-2" />
+                                    </svg>
+                                </div>
+                                <div className="absolute top-4 left-4">
+                                    <div className="text-3xl font-bold text-primary tracking-tight">85%</div>
+                                    <div className="text-[10px] font-bold text-muted-foreground uppercase">Win Rate</div>
+                                </div>
+                            </div>
+
+                            {/* Performance Metrics */}
+                            <div className="grid grid-cols-2 gap-3">
+                                <div className="p-3 rounded-2xl bg-muted/50 border border-border flex flex-col items-center text-center hover:bg-muted/80 transition-colors">
+                                    <span className="text-[10px] font-bold text-muted-foreground uppercase">Total Profit</span>
+                                    <span className="text-lg font-bold text-green-500">+₹1.2L</span>
+                                </div>
+                                <div className="p-3 rounded-2xl bg-muted/50 border border-border flex flex-col items-center text-center hover:bg-muted/80 transition-colors">
+                                    <span className="text-[10px] font-bold text-muted-foreground uppercase">Trades</span>
+                                    <span className="text-lg font-bold text-foreground">1,240</span>
                                 </div>
                             </div>
                         </div>
 
-                        {/* Live Community Feed (The 'Avatar' Request) */}
-                        <div className="absolute top-1/2 left-0 -translate-y-1/2 z-10 animate-in fade-in slide-in-from-left-8 duration-1000 delay-300">
-                            <div className="glass-card p-5 rounded-2xl border border-border/50 bg-card/80 backdrop-blur-xl shadow-2xl w-72">
-                                <div className="flex items-center justify-between mb-4 pb-4 border-b border-border/50">
-                                    <span className="font-bold text-sm">Live Trading Room</span>
-                                    <span className="flex items-center gap-1 text-[10px] text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full animate-pulse">● Live</span>
-                                </div>
-                                <div className="space-y-4">
-                                    {[1, 2, 3].map((i) => (
-                                        <div key={i} className="flex items-center gap-3">
-                                            <div className="relative">
-                                                <div className="w-8 h-8 rounded-full border border-border overflow-hidden">
-                                                    <img src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${i + 20}`} alt="Trader" />
-                                                </div>
-                                                <div className="absolute -bottom-0.5 -right-0.5 w-2.5 h-2.5 bg-green-500 border-2 border-card rounded-full"></div>
-                                            </div>
-                                            <div className="flex-1">
-                                                <div className="text-xs font-medium">Trader_{100 + i}</div>
-                                                <div className="text-[10px] text-muted-foreground">Just booked <span className="text-green-500 font-bold">+₹{2450 * i}</span></div>
-                                            </div>
-                                        </div>
-                                    ))}
-                                    <div className="pt-2 text-center text-[10px] text-muted-foreground">
-                                        +840 traders active now
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
-                        {/* Floating Profit Notification */}
-                        <div className="absolute bottom-20 right-20 z-30 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
-                            <div className="glass-card p-3 rounded-xl border border-blue-500/30 bg-card/90 backdrop-blur-md shadow-xl flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center text-blue-500"><Zap className="w-5 h-5 fill-current" /></div>
-                                <div>
-                                    <div className="text-[10px] font-bold text-blue-500 uppercase">System Alert</div>
-                                    <div className="text-xs font-bold">+12% on Premium</div>
-                                </div>
-                            </div>
-                        </div>
+                        {/* Decorative Blur Circles */}
+                        <div className="absolute top-20 left-10 w-24 h-24 bg-primary/20 rounded-full blur-2xl -z-10 animate-blob"></div>
+                        <div className="absolute bottom-20 right-10 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl -z-10 animate-blob animation-delay-2000"></div>
+
                     </div>
                 </div>
 
@@ -311,13 +316,13 @@ export default function Home() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div >
 
-                </div>
-            </section>
+                </div >
+            </section >
 
             {/* Platform Ecosystem - SOW Features */}
-            <section className="w-full max-w-7xl mx-auto px-2 py-24 relative z-10">
+            < section className="w-full max-w-7xl mx-auto px-2 py-24 relative z-10" >
                 <div className="text-center mb-16">
                     <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Complete <span className="text-primary">Trading Ecosystem</span></h2>
                     <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Built for speed, accuracy, and scale. Powered by institutional-grade infrastructure.</p>
@@ -426,10 +431,10 @@ export default function Home() {
                         </CardContent>
                     </Card>
                 </div>
-            </section>
+            </section >
 
             {/* Live Signals Strip */}
-            <section className="w-full max-w-7xl mx-auto px-2 py-12 md:py-24 bg-muted/20 rounded-3xl my-12">
+            < section className="w-full max-w-7xl mx-auto px-2 py-12 md:py-24 bg-muted/20 rounded-3xl my-12" >
                 <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
                     <div className="text-left">
                         <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Recent <span className="text-primary">Alpha</span> Setup</h2>
@@ -484,10 +489,10 @@ export default function Home() {
                         </Card>
                     ))}
                 </div>
-            </section>
+            </section >
 
             {/* Testimonials - Social Proof */}
-            <section className="w-full max-w-7xl mx-auto px-2 py-24 text-center">
+            < section className="w-full max-w-7xl mx-auto px-2 py-24 text-center" >
                 <h2 className="text-3xl md:text-5xl font-bold mb-16 tracking-tight">Trusted by <span className="text-primary">10,000+</span> Traders</h2>
                 <div className="grid md:grid-cols-3 gap-8">
                     {[1, 2, 3].map((i) => (
@@ -503,7 +508,7 @@ export default function Home() {
                         </Card>
                     ))}
                 </div>
-            </section>
-        </div>
+            </section >
+        </div >
     );
 }
