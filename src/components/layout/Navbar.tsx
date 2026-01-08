@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { ModeToggle } from "@/components/mode-toggle"
 import { Zap } from "lucide-react"
 import { useEffect, useState } from "react"
+import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
 
 export default function Navbar() {
@@ -17,6 +18,8 @@ export default function Navbar() {
         window.addEventListener("scroll", handleScroll)
         return () => window.removeEventListener("scroll", handleScroll)
     }, [])
+
+    const pathname = usePathname()
 
     return (
         <div className={cn(
@@ -42,16 +45,26 @@ export default function Navbar() {
                     </div>
 
                     {/* Desktop Navigation - Centered Dock */}
-                    <nav className="hidden md:flex items-center justify-center gap-1 bg-secondary/30 p-1.5 rounded-full border border-border/20">
-                        {['Home', 'Market', 'Plans', 'About'].map((item) => (
-                            <Link
-                                key={item}
-                                href={item === 'Home' ? '/' : `/ ${item.toLowerCase()} `}
-                                className="px-5 py-2 text-sm font-medium text-muted-foreground hover:text-primary-foreground hover:bg-primary transition-all duration-300 rounded-full"
-                            >
-                                {item}
-                            </Link>
-                        ))}
+                    <nav className="hidden md:flex items-center justify-center gap-1 bg-secondary/50 p-1.5 rounded-full border border-border/10 backdrop-blur-md">
+                        {['Home', 'Market', 'Plans', 'About'].map((item) => {
+                            const href = item === 'Home' ? '/' : `/${item.toLowerCase()}`;
+                            const isActive = item === 'Home' ? pathname === '/' : pathname.startsWith(href);
+
+                            return (
+                                <Link
+                                    key={item}
+                                    href={href}
+                                    className={cn(
+                                        "px-5 py-2 text-sm transition-all duration-300 rounded-full",
+                                        isActive
+                                            ? "bg-background text-foreground font-bold shadow-sm ring-1 ring-black/5 dark:ring-white/10"
+                                            : "font-medium text-muted-foreground hover:text-foreground hover:bg-background/50"
+                                    )}
+                                >
+                                    {item}
+                                </Link>
+                            )
+                        })}
                     </nav>
 
                     {/* Right Actions */}

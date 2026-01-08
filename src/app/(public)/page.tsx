@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { ArrowRight, TrendingUp, Lock, Zap, Shield, BarChart3, Clock, CheckCircle2 } from "lucide-react";
+import { ArrowRight, TrendingUp, Lock, Zap, Shield, BarChart3, Clock, CheckCircle2, Wallet, Users } from "lucide-react";
 import { MOCK_SIGNALS, MOCK_STATS } from "@/lib/mock";
 import { MarketTicker } from "@/components/market-ticker";
 
@@ -163,7 +163,7 @@ export default function Home() {
                         {/* Glow Effect */}
                         <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 via-primary/10 to-primary/20 rounded-2xl blur-xl opacity-50 group-hover:opacity-75 transition duration-500"></div>
 
-                        <div className="relative rounded-xl border border-border bg-card shadow-2xl overflow-hidden ring-1 ring-white/5">
+                        <div className="relative rounded-xl border border-border bg-card shadow-xl overflow-hidden ring-1 ring-white/5">
                             {/* Terminal Header */}
                             <div className="h-14 border-b border-border bg-muted/20 flex items-center justify-between px-6">
                                 <div className="flex items-center gap-4">
@@ -279,38 +279,53 @@ export default function Home() {
                                     </div>
                                 </div>
 
-                                {/* Right: Active Alert Feed */}
-                                <div className="col-span-1 bg-muted/5 flex flex-col">
-                                    <div className="p-4 border-b border-border font-semibold text-sm flex justify-between items-center">
-                                        <span>AI Signals</span>
-                                        <Zap className="h-4 w-4 text-amber-500 fill-current" />
+                                {/* Right: Live Performance Stats */}
+                                <div className="col-span-1 bg-muted/5 border-l border-border flex flex-col">
+                                    <div className="p-4 border-b border-border font-semibold text-sm flex justify-between items-center bg-muted/10">
+                                        <span>Live Performance</span>
+                                        <BarChart3 className="h-4 w-4 text-amber-500 fill-current" />
                                     </div>
-                                    <div className="p-4 space-y-3">
-                                        <div className="p-3 bg-card border border-border rounded-lg shadow-sm border-l-4 border-l-green-500">
-                                            <div className="flex justify-between mb-1">
-                                                <span className="font-bold text-sm">BANKNIFTY</span>
-                                                <span className="text-[10px] bg-green-500/10 text-green-500 px-1.5 py-0.5 rounded font-bold">BUY</span>
+                                    <div className="p-5 space-y-6">
+                                        {/* Daily P&L */}
+                                        <div className="space-y-1">
+                                            <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Today's Earnings</div>
+                                            <div className="text-3xl font-mono font-bold text-green-500 flex items-center gap-2">
+                                                +₹24,500
+                                                <div className="text-[10px] bg-green-500/10 text-green-500 px-1.5 py-0.5 rounded-full font-bold">+12.5%</div>
                                             </div>
-                                            <div className="text-xs text-muted-foreground flex justify-between">
-                                                <span>Entry: 48,100</span>
-                                                <span>Target: 48,300</span>
-                                            </div>
-                                            <div className="mt-2 text-[10px] text-muted-foreground text-right">2 mins ago</div>
                                         </div>
 
-                                        <div className="p-3 bg-card border border-border rounded-lg shadow-sm border-l-4 border-l-amber-500 opacity-60">
-                                            <div className="flex justify-between mb-1">
-                                                <span className="font-bold text-sm">NIFTY</span>
-                                                <span className="text-[10px] bg-amber-500/10 text-amber-500 px-1.5 py-0.5 rounded font-bold">HOLD</span>
+                                        {/* Win Rate */}
+                                        <div className="space-y-2">
+                                            <div className="flex justify-between text-sm">
+                                                <span className="text-muted-foreground">Win Rate</span>
+                                                <span className="font-bold text-foreground">82%</span>
                                             </div>
-                                            <div className="text-xs text-muted-foreground">Approaching Resistance</div>
+                                            <div className="h-2 w-full bg-border rounded-full overflow-hidden">
+                                                <div className="h-full bg-amber-500 w-[82%] relative">
+                                                    <div className="absolute inset-0 bg-white/20 animate-[shimmer_2s_infinite]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {/* Quick Stats Grid */}
+                                        <div className="grid grid-cols-2 gap-3 pt-2">
+                                            <div className="p-3 bg-card border border-border rounded-lg shadow-sm">
+                                                <div className="text-[10px] text-muted-foreground mb-1">Active Strats</div>
+                                                <div className="font-bold text-lg">4<span className="text-muted-foreground font-normal text-sm">/5</span></div>
+                                            </div>
+                                            <div className="p-3 bg-card border border-border rounded-lg shadow-sm">
+                                                <div className="text-[10px] text-muted-foreground mb-1">Total Vol</div>
+                                                <div className="font-bold text-lg">₹1.2Cr</div>
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div className="mt-auto p-4 border-t border-border bg-gradient-to-t from-primary/5 to-transparent">
-                                        <div className="text-xs text-center text-muted-foreground mb-2">Want visuals like this?</div>
                                         <Link href="/trial">
-                                            <Button size="sm" variant="outline" className="w-full border-primary/20 text-primary hover:bg-primary/10">Get Full Access</Button>
+                                            <Button size="sm" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20">
+                                                Start Automating
+                                            </Button>
                                         </Link>
                                     </div>
                                 </div>
@@ -321,194 +336,397 @@ export default function Home() {
                 </div >
             </section >
 
-            {/* Platform Ecosystem - SOW Features */}
-            < section className="w-full max-w-7xl mx-auto px-2 py-24 relative z-10" >
-                <div className="text-center mb-16">
-                    <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tight">Complete <span className="text-primary">Trading Ecosystem</span></h2>
-                    <p className="text-muted-foreground max-w-2xl mx-auto text-lg">Built for speed, accuracy, and scale. Powered by institutional-grade infrastructure.</p>
-                </div>
+            {/* Platform Ecosystem - SOW Features V3: Spotlight Zig-Zag (Alerts Prioritized) */}
+            <section className="w-full max-w-7xl mx-auto px-4 py-32 relative z-10 overflow-hidden">
+                {/* Background ambient lighting */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1000px] bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10 pointer-events-none"></div>
 
-                <div className="grid md:grid-cols-3 gap-6">
-                    {/* Feature 1: Strategy Engine */}
-                    <Card className="glass-card border-border/50 hover:border-primary/50 transition-all">
-                        <CardHeader>
-                            <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center text-primary mb-4">
-                                <Zap className="w-6 h-6" />
-                            </div>
-                            <CardTitle className="text-xl">Smart Strategy Engine</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-muted-foreground mb-4">Automated execution with customizable parameters. Backtest strategies against historical data before going live.</p>
-                            <ul className="space-y-2 text-sm text-foreground/80">
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Live Execution & Backtesting</li>
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Custom Strategy Parameters</li>
-                            </ul>
-                        </CardContent>
-                    </Card>
-
-                    {/* Feature 2: Multi-Channel Alerts */}
-                    <Card className="glass-card border-border/50 hover:border-primary/50 transition-all">
-                        <CardHeader>
-                            <div className="w-12 h-12 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-500 mb-4">
-                                <Shield className="w-6 h-6" />
-                            </div>
-                            <CardTitle className="text-xl">Multi-Channel Alerts</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-muted-foreground mb-4">Never miss a setup. Get instant notifications delivered to your preferred device and platform.</p>
-                            <ul className="space-y-2 text-sm text-foreground/80">
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> WhatsApp, Telegram, & SMS</li>
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> &lt; 100ms Push Latency</li>
-                            </ul>
-                        </CardContent>
-                    </Card>
-
-                    {/* Feature 3: Low Latency Data */}
-                    <Card className="glass-card border-border/50 hover:border-primary/50 transition-all">
-                        <CardHeader>
-                            <div className="w-12 h-12 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-500 mb-4">
-                                <BarChart3 className="w-6 h-6" />
-                            </div>
-                            <CardTitle className="text-xl">Ultra-Low Latency</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-muted-foreground mb-4">Powered by institutional feeds (Polygon.io, DxFeed) for microsecond-level precision.</p>
-                            <ul className="space-y-2 text-sm text-foreground/80">
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> &lt; 1ms Tick Delivery</li>
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Real-time Tick-by-Tick Data</li>
-                            </ul>
-                        </CardContent>
-                    </Card>
-
-                    {/* Feature 4: Analytics */}
-                    <Card className="glass-card border-border/50 hover:border-primary/50 transition-all">
-                        <CardHeader>
-                            <div className="w-12 h-12 rounded-lg bg-purple-500/10 flex items-center justify-center text-purple-500 mb-4">
-                                <TrendingUp className="w-6 h-6" />
-                            </div>
-                            <CardTitle className="text-xl">Deep Analytics</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-muted-foreground mb-4">Comprehensive trading journals and performance reports to optimize your edge.</p>
-                            <ul className="space-y-2 text-sm text-foreground/80">
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Strategy-wise Performance</li>
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> One-Click CSV/PDF Export</li>
-                            </ul>
-                        </CardContent>
-                    </Card>
-
-                    {/* Feature 5: Security */}
-                    <Card className="glass-card border-border/50 hover:border-primary/50 transition-all">
-                        <CardHeader>
-                            <div className="w-12 h-12 rounded-lg bg-red-500/10 flex items-center justify-center text-red-500 mb-4">
-                                <Lock className="w-6 h-6" />
-                            </div>
-                            <CardTitle className="text-xl">Enterprise Security</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-muted-foreground mb-4">Your data and API keys are protected with bank-grade encryption and protocols.</p>
-                            <ul className="space-y-2 text-sm text-foreground/80">
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> JWT & Refresh Tokens</li>
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Encrypted Credential Storage</li>
-                            </ul>
-                        </CardContent>
-                    </Card>
-
-                    {/* Feature 6: Cross Platform */}
-                    <Card className="glass-card border-border/50 hover:border-primary/50 transition-all">
-                        <CardHeader>
-                            <div className="w-12 h-12 rounded-lg bg-indigo-500/10 flex items-center justify-center text-indigo-500 mb-4">
-                                <Clock className="w-6 h-6" />
-                            </div>
-                            <CardTitle className="text-xl">Frontend & Mobile</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-muted-foreground mb-4">Seamless experience across Web and Mobile App (Flutter) with real-time sync.</p>
-                            <ul className="space-y-2 text-sm text-foreground/80">
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Next.js + Tailwind Web</li>
-                                <li className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-green-500" /> Native iOS & Android App</li>
-                            </ul>
-                        </CardContent>
-                    </Card>
-                </div>
-            </section >
-
-            {/* Live Signals Strip */}
-            < section className="w-full max-w-7xl mx-auto px-2 py-12 md:py-24 bg-muted/20 rounded-3xl my-12" >
-                <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-6">
-                    <div className="text-left">
-                        <h2 className="text-3xl md:text-5xl font-bold tracking-tight">Recent <span className="text-primary">Alpha</span> Setup</h2>
-                        <p className="text-muted-foreground mt-2 text-lg">Live signals currently tracked by our algorithms.</p>
+                <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-32">
+                    <div className="text-left max-w-4xl">
+                        <h2 className="text-5xl md:text-7xl font-heading font-bold tracking-tighter text-foreground leading-[1.1]">
+                            The Infrastructure of <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary animate-gradient-x">Modern Trading</span>
+                        </h2>
                     </div>
-                    <Link href="/market">
-                        <Button variant="outline" size="lg" className="border-border hover:bg-background h-12">View All Signals <ArrowRight className="ml-2 w-4 h-4" /></Button>
-                    </Link>
+                    <div className="flex flex-col items-start md:items-end gap-6 w-full md:w-auto">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-semibold uppercase tracking-wider backdrop-blur-md shadow-xl">
+                            <Zap className="w-4 h-4 fill-current" />
+                            Powering Alpha
+                        </div>
+                        <p className="text-muted-foreground max-w-xl text-xl md:text-2xl leading-relaxed font-light text-left md:text-right">
+                            Discard the grid. We built a direct pipeline to the markets.
+                        </p>
+                    </div>
                 </div>
 
-                <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    {signals.map((signal) => (
-                        <Card key={signal.id} className="relative overflow-hidden glass-card border-border/40 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 group">
-                            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-4 border-b border-border/40 bg-muted/20">
-                                <div>
-                                    <Badge variant="outline" className="mb-2 border-border/50">{signal.segment}</Badge>
-                                    <CardTitle className="text-xl font-bold tracking-tight">{signal.symbol}</CardTitle>
+                <div className="space-y-32">
+
+                    {/* Feature 1: Multi-Channel Alerts (HERO FEATURE) */}
+                    <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-24 group">
+                        <div className="lg:w-1/2 space-y-8">
+                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-500/50 flex items-center justify-center shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-500">
+                                <Shield className="w-8 h-8 text-white fill-white/20" />
+                            </div>
+                            <h3 className="text-4xl md:text-5xl font-bold text-foreground">
+                                Multi-Channel Alerts
+                            </h3>
+                            <p className="text-lg text-muted-foreground leading-loose">
+                                Never miss a setup. Get instant notifications delivered to your preferred device the moment your strategy triggers.
+                            </p>
+                            <div className="flex flex-col gap-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 rounded-lg bg-blue-500/10"><CheckCircle2 className="w-5 h-5 text-blue-500" /></div>
+                                    <span className="text-lg">WhatsApp, Telegram, & SMS</span>
                                 </div>
-                                <Badge variant={signal.type === 'BUY' ? "default" : "destructive"} className={`px-3 py-1 text-sm ${signal.type === 'BUY' ? 'bg-green-500/20 text-green-600 dark:text-green-400' : 'bg-red-500/20 text-red-600 dark:text-red-400'}`}>
-                                    {signal.type}
-                                </Badge>
-                            </CardHeader>
-                            <CardContent className="pt-6">
-                                <div className="flex justify-between items-baseline mb-6">
-                                    <div className="text-sm font-medium text-muted-foreground">Entry Zone</div>
-                                    <div className="text-3xl font-mono font-bold text-foreground tracking-tighter">{signal.entry}</div>
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 rounded-lg bg-blue-500/10"><CheckCircle2 className="w-5 h-5 text-blue-500" /></div>
+                                    <span className="text-lg">&lt; 100ms Push Latency</span>
+                                </div>
+                            </div>
+                        </div>
+                        {/* Visual Mockup - Golden Notification Center (MATCHING ANALYTICS DIMENSIONS) */}
+                        <div className="lg:w-1/2 w-full lg:h-[400px] relative">
+                            <div className="absolute -inset-4 bg-gradient-to-tr from-amber-500/20 to-yellow-500/5 rounded-[30px] blur-2xl opacity-60"></div>
+
+                            {/* Notification Card (Sized to match Analytics) */}
+                            <div className="relative h-full w-full bg-white dark:bg-[#0a0a0a] border border-black/5 dark:border-white/10 rounded-[20px] shadow-2xl overflow-hidden backdrop-blur-xl ring-1 ring-black/5 dark:ring-white/5 flex flex-col">
+                                {/* Header */}
+                                <div className="flex items-center justify-between px-6 py-4 border-b border-black/5 dark:border-white/5 bg-slate-50/50 dark:bg-white/5">
+                                    <div className="flex items-center gap-3">
+                                        <div className="flex -space-x-2">
+                                            <div className="w-8 h-8 rounded-full bg-[#25D366] flex items-center justify-center ring-2 ring-white dark:ring-black"><span className="text-white text-[10px] font-bold">WA</span></div>
+                                            <div className="w-8 h-8 rounded-full bg-[#229ED9] flex items-center justify-center ring-2 ring-white dark:ring-black"><span className="text-white text-[10px] font-bold">TG</span></div>
+                                        </div>
+                                        <span className="text-sm font-bold text-slate-900 dark:text-white/90">Alerts Webhook</span>
+                                    </div>
+                                    <div className="flex gap-1.5">
+                                        <div className="w-2.5 h-2.5 rounded-full bg-red-500/20 border border-red-500/50"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-yellow-500/20 border border-yellow-500/50"></div>
+                                        <div className="w-2.5 h-2.5 rounded-full bg-green-500/20 border border-green-500/50"></div>
+                                    </div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4 text-sm mb-6">
-                                    <div className="bg-muted/30 p-3 rounded-lg text-center border border-border/30">
-                                        <div className="text-muted-foreground text-xs uppercase font-bold mb-1">Stop Loss</div>
-                                        <div className="font-mono text-red-500 font-bold">{signal.stopLoss}</div>
-                                    </div>
-                                    <div className="bg-muted/30 p-3 rounded-lg text-center border border-border/30">
-                                        <div className="text-muted-foreground text-xs uppercase font-bold mb-1">Target</div>
-                                        <div className="font-mono text-green-500 font-bold">{signal.targets[0]}</div>
-                                    </div>
-                                </div>
+                                {/* Notifications List */}
+                                <div className="flex-1 p-6 space-y-4 overflow-hidden relative">
+                                    <div className="absolute top-0 left-0 w-full h-8 bg-gradient-to-b from-white dark:from-[#0a0a0a] to-transparent z-10"></div>
 
-                                {!signal.isFree && signal.status !== 'Closed' && (
-                                    <div className="absolute inset-0 bg-background/60 backdrop-blur-md flex items-center justify-center z-10 transition-opacity opacity-100 group-hover:opacity-95">
-                                        <div className="text-center p-6 bg-card border border-border/50 rounded-xl shadow-2xl max-w-[200px]">
-                                            <Lock className="mx-auto h-8 w-8 text-primary mb-3" />
-                                            <h4 className="font-bold text-base mb-1">Premium Member</h4>
-                                            <Button size="sm" className="w-full bg-primary text-primary-foreground hover:bg-primary/90 mt-2" asChild>
-                                                <Link href="/login">Unlock</Link>
-                                            </Button>
+                                    {/* Notification 1: WhatsApp */}
+                                    <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-lg flex gap-4 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors cursor-pointer group/alert">
+                                        <div className="w-10 h-10 rounded-full bg-[#25D366]/10 dark:bg-[#25D366]/20 flex items-center justify-center shrink-0">
+                                            <div className="w-6 h-6 rounded-full bg-[#25D366] flex items-center justify-center"><span className="text-white text-[10px] font-bold">WA</span></div>
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="flex justify-between items-start mb-1">
+                                                <span className="font-bold text-sm text-[#25D366]">WhatsApp</span>
+                                                <span className="text-[10px] text-slate-500 dark:text-white/40">Now</span>
+                                            </div>
+                                            <p className="text-sm text-slate-600 dark:text-white/90 leading-snug">🚀 <b className="text-amber-600 dark:text-amber-400">NIFTY 50</b> crossed 24,500. <br />Signal: <span className="text-green-600 dark:text-green-400 font-bold">BUY CE</span></p>
                                         </div>
                                     </div>
-                                )}
-                            </CardContent>
-                        </Card>
-                    ))}
+
+                                    {/* Notification 2: Telegram */}
+                                    <div className="bg-slate-50 dark:bg-white/5 p-4 rounded-xl border border-slate-200 dark:border-white/10 shadow-sm dark:shadow-lg flex gap-4 hover:bg-slate-100 dark:hover:bg-white/10 transition-colors cursor-pointer group/alert">
+                                        <div className="w-10 h-10 rounded-full bg-[#229ED9]/10 dark:bg-[#229ED9]/20 flex items-center justify-center shrink-0">
+                                            <div className="w-6 h-6 rounded-full bg-[#229ED9] flex items-center justify-center"><span className="text-white text-[10px] font-bold">TG</span></div>
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="flex justify-between items-start mb-1">
+                                                <span className="font-bold text-sm text-[#229ED9]">Telegram Premium</span>
+                                                <span className="text-[10px] text-slate-500 dark:text-white/40">2m ago</span>
+                                            </div>
+                                            <p className="text-sm text-slate-600 dark:text-white/90 leading-snug">Double Top detected on <b className="text-amber-600 dark:text-amber-400">BANKNIFTY</b> 15m chart. 📉</p>
+                                        </div>
+                                    </div>
+
+                                    {/* Notification 3: System */}
+                                    <div className="bg-amber-50 dark:bg-amber-500/10 p-4 rounded-xl border border-amber-200 dark:border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.1)] flex gap-4 relative overflow-hidden">
+                                        <div className="absolute left-0 top-0 w-1 h-full bg-amber-500"></div>
+                                        <div className="w-10 h-10 rounded-full bg-amber-500/10 dark:bg-amber-500/20 flex items-center justify-center shrink-0">
+                                            <Zap className="w-5 h-5 text-amber-600 dark:text-amber-500" />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="flex justify-between items-start mb-2">
+                                                <span className="font-bold text-sm text-amber-600 dark:text-amber-500">System Alert</span>
+                                                <span className="text-[10px] text-slate-500 dark:text-white/40">5m ago</span>
+                                            </div>
+                                            <div className="space-y-2">
+                                                <div className="flex justify-between text-xs text-slate-600 dark:text-white/70">
+                                                    <span>Daily P&L</span>
+                                                    <span className="text-green-600 dark:text-green-400 font-mono font-bold">+₹14,250.00</span>
+                                                </div>
+                                                <div className="h-1.5 w-full bg-slate-200 dark:bg-white/10 rounded-full overflow-hidden">
+                                                    <div className="h-full bg-green-500 w-[75%]"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-white dark:from-[#0a0a0a] to-transparent z-10 pointer-events-none"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Feature 2: Analytics (Golden Colors) */}
+                    <div className="flex flex-col-reverse lg:flex-row items-center gap-12 lg:gap-24 group">
+                        {/* Visual Mockup */}
+                        <div className="lg:w-1/2 w-full lg:h-[400px] relative">
+                            <div className="absolute -inset-4 bg-gradient-to-r from-amber-500/20 to-yellow-600/20 rounded-[30px] blur-2xl opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
+                            <div className="relative h-full bg-white dark:bg-[#0a0a0a] border border-black/5 dark:border-white/10 rounded-[20px] shadow-2xl overflow-hidden p-8 flex items-end justify-center">
+                                {/* Bar Chart Visualization - Golden */}
+                                <div className="w-full flex items-end justify-between gap-2 h-48">
+                                    {[35, 55, 40, 70, 50, 85, 60, 95, 75, 50, 65, 80].map((h, i) => (
+                                        <div key={i} className="flex-1 bg-gradient-to-t from-amber-500 dark:from-amber-600 to-yellow-400 rounded-t-sm opacity-80 hover:opacity-100 transition-all duration-300 hover:scale-y-105 origin-bottom shadow-[0_0_10px_rgba(245,158,11,0.3)]" style={{ height: `${h}%` }}></div>
+                                    ))}
+                                </div>
+                                <div className="absolute top-8 left-8">
+                                    <div className="text-sm text-slate-500 dark:text-white/50 uppercase tracking-wider mb-1">Total P&L</div>
+                                    <div className="text-4xl font-mono font-bold text-slate-900 dark:text-white">+₹4.2L</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="lg:w-1/2 space-y-8">
+                            <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-purple-500/50 flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform duration-500">
+                                <TrendingUp className="w-8 h-8 text-white fill-white/20" />
+                            </div>
+                            <h3 className="text-4xl md:text-5xl font-bold text-foreground">
+                                Deep Analytics
+                            </h3>
+                            <p className="text-lg text-muted-foreground leading-loose">
+                                Comprehensive trading journals and performance reports to optimize your edge.
+                            </p>
+                            <div className="flex flex-col gap-4">
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 rounded-lg bg-purple-500/10"><CheckCircle2 className="w-5 h-5 text-purple-500" /></div>
+                                    <span className="text-lg">Strategy-wise Performance</span>
+                                </div>
+                                <div className="flex items-center gap-4">
+                                    <div className="p-2 rounded-lg bg-purple-500/10"><CheckCircle2 className="w-5 h-5 text-purple-500" /></div>
+                                    <span className="text-lg">One-Click CSV/PDF Export</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Feature Strip (Grid of 4) */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 pt-12">
+                        {/* Strategy Engine - Demoted to Grid */}
+                        <div className="p-6 rounded-[2rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-primary/30 transition-all hover:-translate-y-2 group/card">
+                            <Zap className="w-8 h-8 text-primary mb-4 group-hover/card:scale-110 transition-transform" />
+                            <h4 className="text-xl font-bold mb-2">Smart Strategy Engine</h4>
+                            <p className="text-sm text-muted-foreground mb-4">Run automated strategies in the cloud. Backtest against historical data.</p>
+                            <ul className="space-y-1">
+                                <li className="text-xs text-foreground/70 flex items-center gap-2"><div className="w-1 h-1 bg-primary rounded-full"></div> Cloud Execution</li>
+                                <li className="text-xs text-foreground/70 flex items-center gap-2"><div className="w-1 h-1 bg-primary rounded-full"></div> 5-Year Backtesting</li>
+                            </ul>
+                        </div>
+
+                        {/* Latency */}
+                        <div className="p-6 rounded-[2rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-amber-500/30 transition-all hover:-translate-y-2 group/card">
+                            <BarChart3 className="w-8 h-8 text-amber-500 mb-4 group-hover/card:scale-110 transition-transform" />
+                            <h4 className="text-xl font-bold mb-2">Ultra-Low Latency</h4>
+                            <p className="text-sm text-muted-foreground mb-4">Powered by institutional feeds (Polygon.io, DxFeed) for microsecond-level precision.</p>
+                            <ul className="space-y-1">
+                                <li className="text-xs text-foreground/70 flex items-center gap-2"><div className="w-1 h-1 bg-amber-500 rounded-full"></div> &lt; 1ms Tick Delivery</li>
+                                <li className="text-xs text-foreground/70 flex items-center gap-2"><div className="w-1 h-1 bg-amber-500 rounded-full"></div> Real-time Data</li>
+                            </ul>
+                        </div>
+
+                        {/* Security */}
+                        <div className="p-6 rounded-[2rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-red-500/30 transition-all hover:-translate-y-2 group/card">
+                            <Lock className="w-8 h-8 text-red-500 mb-4 group-hover/card:scale-110 transition-transform" />
+                            <h4 className="text-xl font-bold mb-2">Enterprise Security</h4>
+                            <p className="text-sm text-muted-foreground mb-4">Your data and API keys are protected with bank-grade encryption and protocols.</p>
+                            <ul className="space-y-1">
+                                <li className="text-xs text-foreground/70 flex items-center gap-2"><div className="w-1 h-1 bg-red-500 rounded-full"></div> JWT & Refresh Tokens</li>
+                                <li className="text-xs text-foreground/70 flex items-center gap-2"><div className="w-1 h-1 bg-red-500 rounded-full"></div> Encrypted Storage</li>
+                            </ul>
+                        </div>
+
+                        {/* Mobile */}
+                        <div className="p-6 rounded-[2rem] bg-gradient-to-br from-white/5 to-transparent border border-white/10 hover:border-indigo-500/30 transition-all hover:-translate-y-2 group/card">
+                            <Clock className="w-8 h-8 text-indigo-500 mb-4 group-hover/card:scale-110 transition-transform" />
+                            <h4 className="text-xl font-bold mb-2">Frontend & Mobile</h4>
+                            <p className="text-sm text-muted-foreground mb-4">Seamless experience across Web and Mobile App (Flutter) with real-time sync.</p>
+                            <ul className="space-y-1">
+                                <li className="text-xs text-foreground/70 flex items-center gap-2"><div className="w-1 h-1 bg-indigo-500 rounded-full"></div> Next.js + Tailwind Web</li>
+                                <li className="text-xs text-foreground/70 flex items-center gap-2"><div className="w-1 h-1 bg-indigo-500 rounded-full"></div> Native iOS & Android</li>
+                            </ul>
+                        </div>
+                    </div>
+
                 </div>
-            </section >
+            </section>
+
+            {/* Pricing Section */}
+            <section className="w-full max-w-7xl mx-auto px-4 py-32 relative z-10 overflow-hidden">
+                {/* Background ambient lighting */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1000px] bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10 pointer-events-none"></div>
+
+                <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-32">
+                    <div className="text-left max-w-4xl">
+                        <h2 className="text-5xl md:text-7xl font-heading font-bold tracking-tighter text-foreground leading-[1.1]">
+                            Choose your <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary animate-gradient-x">Trading Edge</span>
+                        </h2>
+                    </div>
+                    <div className="flex flex-col items-start md:items-end gap-6 w-full md:w-auto">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-semibold uppercase tracking-wider backdrop-blur-md shadow-xl">
+                            <Wallet className="w-4 h-4 fill-current" />
+                            Simple Pricing
+                        </div>
+                        <p className="text-muted-foreground max-w-xl text-xl md:text-2xl leading-relaxed font-light text-left md:text-right">
+                            Transparent pricing. No hidden fees. Just results.
+                        </p>
+                    </div>
+                </div>
+
+                <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto items-stretch">
+                    {/* Demo Plan */}
+                    <div className="relative p-8 rounded-3xl border border-white/10 bg-white dark:bg-white/5 shadow-xl flex flex-col items-center text-center hover:translate-y-[-4px] transition-transform duration-300">
+                        <div className="mb-6">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Demo Access</h3>
+                            <p className="text-sm text-slate-500 dark:text-white/60">Perfect for testing the waters</p>
+                        </div>
+                        <div className="mb-8">
+                            <span className="text-4xl font-bold text-slate-900 dark:text-white">Free</span>
+                            <span className="text-sm text-slate-500 dark:text-white/40"> / 1 Day</span>
+                        </div>
+                        <ul className="space-y-4 mb-8 text-left w-full max-w-[240px] mx-auto">
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-green-500" /> Unlimited Strategies</li>
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-green-500" /> &lt; 100ms Latency</li>
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-green-500" /> Deep Analytics & Export</li>
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-green-500" /> Priority 24/7 Support</li>
+                        </ul>
+                        <div className="mt-auto w-full">
+                            <Link href="/trial">
+                                <Button size="lg" variant="outline" className="w-full border-slate-200 dark:border-white/20 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-900 dark:text-white">Start 1-Day Trial</Button>
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Pro Plan (Highlighted - Hero) */}
+                    <div className="relative p-8 rounded-3xl border border-amber-500/50 bg-slate-50 dark:bg-[#0a0a0a] shadow-2xl shadow-amber-500/20 flex flex-col items-center text-center ring-1 ring-amber-500/50 z-10 scale-105 transform">
+                        <div className="absolute top-0 -translate-y-1/2 bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold px-4 py-1 rounded-full text-xs uppercase tracking-wider shadow-lg">
+                            Most Popular
+                        </div>
+                        <div className="mb-6">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Pro Access</h3>
+                            <p className="text-sm text-slate-500 dark:text-white/60">For serious algorithmic traders</p>
+                        </div>
+                        <div className="mb-8">
+                            <span className="text-4xl font-bold text-slate-900 dark:text-white">₹25,000</span>
+                            <span className="text-sm text-slate-500 dark:text-white/40"> / Month</span>
+                        </div>
+                        <ul className="space-y-4 mb-8 text-left w-full max-w-[240px] mx-auto">
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-amber-500" /> Unlimited Strategies</li>
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-amber-500" /> &lt; 100ms Latency</li>
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-amber-500" /> Deep Analytics & Export</li>
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-amber-500" /> Priority 24/7 Support</li>
+                        </ul>
+                        <div className="mt-auto w-full">
+                            <Link href="/pricing">
+                                <Button size="lg" className="w-full bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-black font-bold shadow-lg shadow-amber-500/25">Get Started</Button>
+                            </Link>
+                        </div>
+                    </div>
+
+                    {/* Enterprise Plan (New) */}
+                    <div className="relative p-8 rounded-3xl border border-white/10 bg-white dark:bg-white/5 shadow-xl flex flex-col items-center text-center hover:translate-y-[-4px] transition-transform duration-300">
+                        <div className="mb-6">
+                            <h3 className="text-xl font-bold text-slate-900 dark:text-white">Enterprise</h3>
+                            <p className="text-sm text-slate-500 dark:text-white/60">For Prop Desks & Funds</p>
+                        </div>
+                        <div className="mb-8">
+                            <span className="text-4xl font-bold text-slate-900 dark:text-white">Custom</span>
+                            <span className="text-sm text-slate-500 dark:text-white/40"> / Pricing</span>
+                        </div>
+                        <ul className="space-y-4 mb-8 text-left w-full max-w-[240px] mx-auto">
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><Shield className="w-4 h-4 text-indigo-500" /> Dedicated Infrastructure</li>
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-indigo-500" /> White Label Solution</li>
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-indigo-500" /> FIX API Access</li>
+                            <li className="flex items-center gap-3 text-sm text-slate-600 dark:text-white/80"><CheckCircle2 className="w-4 h-4 text-indigo-500" /> Dedicated Account Manager</li>
+                        </ul>
+                        <div className="mt-auto w-full">
+                            <Link href="/contact">
+                                <Button size="lg" variant="outline" className="w-full border-slate-200 dark:border-white/20 hover:bg-slate-100 dark:hover:bg-white/10 text-slate-900 dark:text-white">Contact Sales</Button>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* Testimonials - Social Proof */}
-            < section className="w-full max-w-7xl mx-auto px-2 py-24 text-center" >
-                <h2 className="text-3xl md:text-5xl font-bold mb-16 tracking-tight">Trusted by <span className="text-primary">10,000+</span> Traders</h2>
-                <div className="grid md:grid-cols-3 gap-8">
-                    {[1, 2, 3].map((i) => (
-                        <Card key={i} className="border-border/50 bg-card/30">
-                            <CardContent className="pt-8">
-                                <div className="flex justify-center mb-4 text-primary">
-                                    {[1, 2, 3, 4, 5].map(s => <CheckCircle2 key={s} className="w-5 h-5 fill-current text-primary" />)}
-                                </div>
-                                <p className="text-lg italic text-muted-foreground mb-6">&quot;Finally a signal provider that is transparent with their P&L. I&apos;ve recovered my past losses in just 2 months using the Pro plan.&quot;</p>
-                                <div className="font-bold text-foreground">Rahul S.</div>
-                                <div className="text-sm text-muted-foreground">Pro Trader • Mumbai</div>
-                            </CardContent>
-                        </Card>
-                    ))}
+            <section className="w-full max-w-7xl mx-auto px-4 py-32 relative z-10 overflow-hidden">
+                {/* Background ambient lighting */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[1000px] bg-gradient-to-b from-primary/5 via-transparent to-transparent -z-10 pointer-events-none"></div>
+
+                <div className="flex flex-col md:flex-row justify-between items-end gap-8 mb-32">
+                    <div className="text-left max-w-4xl">
+                        <h2 className="text-5xl md:text-7xl font-heading font-bold tracking-tighter text-foreground leading-[1.1]">
+                            Trusted by <br />
+                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary animate-gradient-x">10,000+ Traders</span>
+                        </h2>
+                    </div>
+                    <div className="flex flex-col items-start md:items-end gap-6 w-full md:w-auto">
+                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-primary text-sm font-semibold uppercase tracking-wider backdrop-blur-md shadow-xl">
+                            <Users className="w-4 h-4 fill-current" />
+                            Social Proof
+                        </div>
+                        <p className="text-muted-foreground max-w-xl text-xl md:text-2xl leading-relaxed font-light text-left md:text-right">
+                            Don't just take our word for it. See what the community says.
+                        </p>
+                    </div>
                 </div>
-            </section >
+
+                <div className="grid md:grid-cols-3 gap-8 text-left">
+                    {/* Testimonial 1 */}
+                    <div className="p-8 rounded-3xl bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 hover:-translate-y-2 transition-transform duration-300 hover:border-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/5 group">
+                        <div className="flex gap-1 mb-6">
+                            {[1, 2, 3, 4, 5].map(s => <div key={s} className="w-5 h-5 text-amber-500 fill-current"><svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg></div>)}
+                        </div>
+                        <p className="text-lg text-slate-600 dark:text-gray-300 italic mb-8 leading-relaxed">"Finally a signal provider that is transparent with their P&L. I've recovered my past losses in just 2 months using the Pro plan."</p>
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center text-white font-bold text-lg">RS</div>
+                            <div>
+                                <div className="font-bold text-foreground">Rahul S.</div>
+                                <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Pro Trader • Mumbai</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Testimonial 2 */}
+                    <div className="p-8 rounded-3xl bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 hover:-translate-y-2 transition-transform duration-300 hover:border-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/5 group">
+                        <div className="flex gap-1 mb-6">
+                            {[1, 2, 3, 4, 5].map(s => <div key={s} className="w-5 h-5 text-amber-500 fill-current"><svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg></div>)}
+                        </div>
+                        <p className="text-lg text-slate-600 dark:text-gray-300 italic mb-8 leading-relaxed">"The latency is practically non-existent. Executing strategies via their API feels like having a direct line to the exchange."</p>
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center text-white font-bold text-lg">PM</div>
+                            <div>
+                                <div className="font-bold text-foreground">Priya M.</div>
+                                <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Algo Developer • Bangalore</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Testimonial 3 */}
+                    <div className="p-8 rounded-3xl bg-white dark:bg-white/5 border border-black/5 dark:border-white/10 hover:-translate-y-2 transition-transform duration-300 hover:border-amber-500/30 hover:shadow-2xl hover:shadow-amber-500/5 group">
+                        <div className="flex gap-1 mb-6">
+                            {[1, 2, 3, 4, 5].map(s => <div key={s} className="w-5 h-5 text-amber-500 fill-current"><svg viewBox="0 0 24 24" fill="currentColor" className="w-full h-full"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" /></svg></div>)}
+                        </div>
+                        <p className="text-lg text-slate-600 dark:text-gray-300 italic mb-8 leading-relaxed">"Most services repaint their signals, but these guys are legit. What you see on the dashboard is exactly what happened live."</p>
+                        <div className="flex items-center gap-4">
+                            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center text-white font-bold text-lg">AK</div>
+                            <div>
+                                <div className="font-bold text-foreground">Arjun K.</div>
+                                <div className="text-xs text-muted-foreground uppercase tracking-wider font-semibold">Swing Trader • Delhi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </div >
     );
 }
