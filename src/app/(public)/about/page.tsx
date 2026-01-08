@@ -7,6 +7,7 @@ export default function AboutPage() {
                 Our team of expert analysts and advanced algorithms work around the clock to identify profit opportunities
                 in the Equity, Futures, and Options markets.
             </p>
+            
             <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="p-6 bg-muted rounded-lg">
                     <h3 className="font-bold text-xl mb-2">Transparency</h3>
