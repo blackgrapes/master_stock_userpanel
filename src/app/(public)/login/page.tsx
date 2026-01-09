@@ -49,7 +49,6 @@ export default function LoginPage() {
                 <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-[0.2]"></div>
                 <div className="absolute top-0 left-0 right-0 h-[500px] w-full bg-gradient-to-b from-primary/5 via-transparent to-transparent blur-3xl opacity-40"></div>
             </div>
-
             <div className="w-full max-w-7xl mx-auto mt-10 px-6 py-12 md:py-24 relative z-10">
                 <div className="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-16 lg:gap-8">
 
