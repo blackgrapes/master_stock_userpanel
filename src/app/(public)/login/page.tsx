@@ -32,7 +32,7 @@ export default function LoginPage() {
 
             console.log('Login attempt:', { email, password });
             // On success:
-            // router.push('/dashboard'); 
+            router.push('/dashboard');
         } catch (error) {
             console.error(error);
         } finally {
@@ -121,6 +121,26 @@ export default function LoginPage() {
                                             'Sign In'
                                         )}
                                     </Button>
+
+                                    <div className="relative my-4">
+                                        <div className="absolute inset-0 flex items-center">
+                                            <span className="w-full border-t border-slate-200 dark:border-white/10" />
+                                        </div>
+                                        <div className="relative flex justify-center text-xs uppercase">
+                                            <span className="bg-white dark:bg-black px-2 text-muted-foreground">
+                                                Or continue with
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <Button
+                                        type="button"
+                                        variant="outline"
+                                        className="w-full h-12 rounded-xl text-base font-bold border-slate-200 dark:border-white/10 hover:bg-slate-50 dark:hover:bg-white/5 transition-all duration-200"
+                                        onClick={() => router.push('/dashboard')}
+                                    >
+                                        <LayoutDashboard className="w-4 h-4 mr-2" /> Mock Login (Demo User)
+                                    </Button>
                                 </form>
                             </CardContent>
                             <div className="p-6 bg-slate-50/50 dark:bg-white/5 border-t border-slate-200 dark:border-white/5 text-center">
@@ -132,10 +152,6 @@ export default function LoginPage() {
                                 </p>
                             </div>
                         </Card>
-
-                        <p className="text-center text-xs text-muted-foreground mt-8 opacity-60">
-                            Protected by MSPK Institutional Grade Security.
-                        </p>
                     </div>
                 </div>
             </div>
